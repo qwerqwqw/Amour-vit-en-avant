@@ -833,7 +833,53 @@
       .letterHeader{ font-size:24px; }
       .letterScroll{ padding:10px 8px; }
     }
-  </style>
+  
+    /* ===== Mobile fixes (safe, no layout changes to desktop) ===== */
+    @media (max-width:560px){
+      .envelope{ min-height:auto; height:92vh; }
+      .letter{ max-height:82vh; }
+      .modal{ align-items:flex-start; }
+      .letterScroll{
+        overflow-y:auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+      }
+      .pulseWrap{ padding:10px; }
+      .pulseWrap svg{ width:100%; height:auto; }
+      h1{ font-size:32px; }
+      .letterHeader{ font-size:22px; }
+      .letterText{ font-size:14px; line-height:1.55; }
+      .btn{ padding:12px 18px; font-size:14px; }
+    }
+
+    /* ===== iPhone 11 / notch phones (414×896 CSS px) ===== */
+    @media (max-width: 414px) and (min-height: 750px){
+      /* Respect safe areas (notch + home indicator) */
+      .wrap{
+        padding-top: calc(28px + env(safe-area-inset-top));
+        padding-bottom: calc(28px + env(safe-area-inset-bottom));
+      }
+
+      .modal{
+        padding-top: calc(18px + env(safe-area-inset-top));
+        padding-bottom: calc(18px + env(safe-area-inset-bottom));
+      }
+
+      /* Make the letter modal feel “native” on iPhone 11 */
+      .sheet{ width: min(980px, 94vw); }
+      .envelope{ height: 90vh; border-radius: 26px; }
+      .letter{ max-height: 78vh; }
+
+      /* Close button: keep it comfortably tappable */
+      .closeX{
+        width: 46px; height: 46px;
+        top: 6px; right: 8px;
+        background: rgba(0,0,0,.18);
+        border-color: rgba(255,255,255,.28);
+      }
+    }
+
+</style>
 </head>
 
 <body>
